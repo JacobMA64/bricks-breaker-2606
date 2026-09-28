@@ -96,10 +96,19 @@ void Game::CheckCollision()
 
 			// TODO #5 - If the ball hits the same brick 3 times (color == black), remove it from the vector
 			
+			if(bricks[i].color == ConsoleColor::Black)
+			{
+				bricks.erase(bricks.begin() + i);
+			}
 		}
 	}
 	// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset
 
+	if (bricks.empty())
+	{
+		ball.x_position = 0;
+		ball.y_position = 0;
+	}
 
 	if (paddle.Contains(ball.x_position + ball.x_velocity, ball.y_velocity + ball.y_position))
 	{
