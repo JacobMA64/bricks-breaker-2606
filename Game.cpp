@@ -31,8 +31,10 @@ void Game::Reset()
 	for (int i = 0; i < 5; i++)
 	{
 		bricks.push_back(newBrick);
-		newBrick.x_position += newBrick.width;
+		newBrick.x_position += newBrick.width + 5;
 	}
+
+
 }
 
 void Game::ResetBall()
@@ -76,7 +78,7 @@ void Game::Render() const
 	ball.Draw();
 
 	// TODO #3 - Update render to render all bricks
-	for (size_t i = 0; i < bricks.size(); i++)
+	for (int i = 0; i < bricks.size(); i++)
 	{
 		bricks[i].Draw();
 	}
@@ -106,6 +108,8 @@ void Game::CheckCollision()
 
 	if (bricks.empty())
 	{
+		ball.x_position = 0;
+		ball.y_position = 0;
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 		std::cout << "VICTORY!!! Press 'R' to reset!";
@@ -116,6 +120,8 @@ void Game::CheckCollision()
 	}
 	if (ball.y_position >= 30)
 	{
+		ball.x_position = 0;
+		ball.y_position = 0;
 		ball.x_velocity = 0;
 		ball.y_velocity = 0;
 		std::cout << "GAME OVER! Press 'R' to Reset.";
